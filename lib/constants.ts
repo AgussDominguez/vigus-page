@@ -6,11 +6,11 @@
 export const BRAND = {
     name: "SEMA",
     tagline: "Creá tus prendas con quienes cuidan cada detalle",
-    subtitle: "Un proceso cuidado de principio a fin",
+    subtitle: "Diseño y Calidad desde Mendoza",
     description:
-        "Somos una marca argentina de indumentaria que fusiona tendencias contemporáneas con la calidad artesanal. Cada prenda es diseñada pensando en vos, en tu estilo único y en tu comodidad.",
+        "Somos una marca de indumentaria de Mendoza, Argentina, que fusiona tendencias contemporáneas con la calidad artesanal. Cada prenda es diseñada pensando en vos, en tu estilo único y en tu comodidad.",
     fullDescription:
-        "Fundada en Buenos Aires, SEMA nació de la pasión por crear prendas que no solo visten, sino que expresan personalidad. Trabajamos con materiales de primera calidad, diseños exclusivos y una producción consciente que respeta tanto a las personas como al medio ambiente. Nuestro compromiso es ofrecerte moda que trasciende temporadas, piezas versátiles que se adaptan a tu vida y estilo.",
+        "Fundada en Mendoza, SEMA nació de la pasión por crear prendas que no solo visten, sino que expresan personalidad. Trabajamos con materiales de primera calidad, diseños exclusivos y una producción consciente que respeta tanto a las personas como al medio ambiente. Nuestro compromiso es ofrecerte moda que trasciende temporadas, piezas versátiles que se adaptan a tu vida y estilo.",
 } as const;
 
 // Navigation Links
@@ -121,7 +121,7 @@ export const CONTACT = {
         number: "5491123456789",
         message: "Hola! Me gustaría obtener más información sobre sus prendas.",
     },
-    address: "Buenos Aires, Argentina",
+    address: "Mendoza, Argentina",
 } as const;
 
 // Social Media Links
@@ -144,21 +144,33 @@ export const SOCIAL_LINKS = [
 ] as const;
 
 // SEO Metadata
+export const SITE_URL = "https://sema-page.vercel.app"; // Update with actual domain if different
+
 export const SEO = {
-    title: "SEMA - Indumentaria Argentina | Estilo que define tu esencia",
+    title: "SEMA Indumentaria | Ropa de Hombre y Mujer en Mendoza",
     description:
-        "Descubrí las últimas tendencias en moda urbana. SEMA ofrece prendas de calidad premium con diseños exclusivos. Envíos a todo el país.",
+        "SEMA Indumentaria: Descubrí las mejores remeras, buzos y pantalones en Mendoza. Moda urbana con calidad artesanal y envíos a toda Argentina.",
     keywords: [
-        "ropa argentina",
-        "moda urbana",
-        "indumentaria",
-        "streetwear",
-        "SEMA",
-        "ropa de calidad",
+        "SEMA Indumentaria",
+        "ropa mendoza",
+        "indumentaria mendoza",
+        "remeras mendoza",
+        "buzos mendoza",
+        "streetwear argentina",
+        "moda urbana mendoza",
+        "SEMA ropa",
     ],
     openGraph: {
         type: "website" as const,
         locale: "es_AR",
-        siteName: "SEMA",
+        siteName: "SEMA Indumentaria",
+        images: [
+            {
+                url: `${SITE_URL}/og-image.jpg`,
+                width: 1200,
+                height: 630,
+                alt: "SEMA Indumentaria Mendoza",
+            },
+        ],
     },
 };

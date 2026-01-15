@@ -19,7 +19,7 @@ const MobileMenuToggle: React.FC<MobileMenuToggleProps> = ({
         <button
             onClick={onClick}
             className={cn(
-                "flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md hover:bg-gray-100 transition-colors",
+                "flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md hover:bg-white/10 transition-colors",
                 className
             )}
             aria-label="Toggle menu"
@@ -28,17 +28,17 @@ const MobileMenuToggle: React.FC<MobileMenuToggleProps> = ({
             <motion.span
                 animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="h-0.5 w-6 bg-black"
+                className="h-0.5 w-6 bg-white"
             />
             <motion.span
                 animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="h-0.5 w-6 bg-black"
+                className="h-0.5 w-6 bg-white"
             />
             <motion.span
                 animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="h-0.5 w-6 bg-black"
+                className="h-0.5 w-6 bg-white"
             />
         </button>
     );
