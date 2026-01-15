@@ -45,7 +45,7 @@ export interface Product {
     primary: string;
     hover?: string;
   };
-  price?: string;
+  price?: number;
 }
 
 // Contact Information
