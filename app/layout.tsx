@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: SEO.title,
   description: SEO.description,
   keywords: SEO.keywords,
+  verification: {
+    google: 'xWLrAiVC9keNoUuj3R-mMgxdHrFeOHO5bG2nABHqcRs',
+  },
   openGraph: {
     title: SEO.title,
     description: SEO.description,
