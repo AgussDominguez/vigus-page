@@ -7,36 +7,42 @@ import { motion, AnimatePresence } from "framer-motion";
 import Logo from "@/components/atoms/Logo";
 import NavLink from "@/components/molecules/NavLink";
 import MobileMenuToggle from "@/components/molecules/MobileMenuToggle";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils/cn";
+import { hexToRgba } from "@/lib/utils/colors";
 
 const Navbar: React.FC = () => {
     const pathname = usePathname();
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [isScrolledSmall, setIsScrolledSmall] = useState(false);
+    const [isPastHero, setIsPastHero] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const isHome = pathname === "/";
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            const scrollY = window.scrollY;
+            setIsScrolledSmall(scrollY > 20);
+
+            // Primary color text only when past hero (~100vh)
+            setIsPastHero(scrollY > window.innerHeight * 0.85);
         };
 
         window.addEventListener("scroll", handleScroll);
+        handleScroll();
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-    const navbarBackground = (!isHome || isScrolled)
-        ? "bg-[#2f3c3b] backdrop-blur-md shadow-md"
-        : "bg-transparent";
+    const showBackground = !isHome || isScrolledSmall;
+    const usePrimaryText = isPastHero || !isHome;
 
     return (
         <nav
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-                navbarBackground
+                showBackground ? "backdrop-blur-md shadow-sm" : "bg-transparent"
             )}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +55,11 @@ const Navbar: React.FC = () => {
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-8">
                         {NAV_LINKS.map((link) => (
-                            <NavLink key={link.href} href={link.href}>
+                            <NavLink
+                                key={link.href}
+                                href={link.href}
+                                variant={usePrimaryText ? "dark" : "light"}
+                            >
                                 {link.label}
                             </NavLink>
                         ))}
@@ -60,6 +70,7 @@ const Navbar: React.FC = () => {
                         <MobileMenuToggle
                             isOpen={isMobileMenuOpen}
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            variant={usePrimaryText ? "dark" : "light"}
                         />
                     </div>
                 </div>
@@ -73,7 +84,10 @@ const Navbar: React.FC = () => {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden bg-transparent"
+                        className={cn(
+                            "md:hidden transition-all duration-300",
+                            showBackground && "backdrop-blur-md"
+                        )}
                     >
                         <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
                             {NAV_LINKS.map((link) => (
@@ -82,6 +96,7 @@ const Navbar: React.FC = () => {
                                     href={link.href}
                                     onClick={closeMobileMenu}
                                     className="text-lg"
+                                    variant={usePrimaryText ? "dark" : "light"}
                                 >
                                     {link.label}
                                 </NavLink>

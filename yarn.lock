@@ -965,11 +965,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:^20":
-  version: 20.19.29
-  resolution: "@types/node@npm:20.19.29"
+  version: 20.19.30
+  resolution: "@types/node@npm:20.19.30"
   dependencies:
     undici-types: ~6.21.0
-  checksum: 326bbcb9dbc32b7bb0ff04f9b20a9d6bbc8cfcbdcffb122997d79b8945b2f17c644090aae3c68084c448d502a8c8d87b9cb367722974ea881e78356622e2b765
+  checksum: 32e80a104b8fcdcacc52a98f0a197a33fd264325501f9af1653cbe9c07fdb6d11130cb0111c65fd353112e6a5af1e5f106714411b1b252d06f0f58760153a1e3
   languageName: node
   linkType: hard
 
@@ -3253,6 +3253,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"la-clinica-del-celular-page@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "la-clinica-del-celular-page@workspace:."
+  dependencies:
+    "@tailwindcss/postcss": ^4
+    "@types/node": ^20
+    "@types/react": ^19
+    "@types/react-dom": ^19
+    clsx: ^2.1.1
+    eslint: ^9
+    eslint-config-next: 16.1.1
+    framer-motion: ^12.26.2
+    googleapis: ^170.0.0
+    lucide-react: ^0.562.0
+    next: 16.1.1
+    react: 19.2.3
+    react-dom: 19.2.3
+    tailwind-merge: ^3.4.0
+    tailwindcss: ^4
+    typescript: ^5
+  languageName: unknown
+  linkType: soft
+
 "language-subtag-registry@npm:^0.3.20":
   version: 0.3.23
   resolution: "language-subtag-registry@npm:0.3.23"
@@ -4108,29 +4131,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sema-page@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "sema-page@workspace:."
-  dependencies:
-    "@tailwindcss/postcss": ^4
-    "@types/node": ^20
-    "@types/react": ^19
-    "@types/react-dom": ^19
-    clsx: ^2.1.1
-    eslint: ^9
-    eslint-config-next: 16.1.1
-    framer-motion: ^12.26.2
-    googleapis: ^170.0.0
-    lucide-react: ^0.562.0
-    next: 16.1.1
-    react: 19.2.3
-    react-dom: 19.2.3
-    tailwind-merge: ^3.4.0
-    tailwindcss: ^4
-    typescript: ^5
-  languageName: unknown
-  linkType: soft
-
 "semver@npm:^6.3.1":
   version: 6.3.1
   resolution: "semver@npm:6.3.1"
@@ -4866,8 +4866,8 @@ __metadata:
   linkType: hard
 
 "which-typed-array@npm:^1.1.16, which-typed-array@npm:^1.1.19":
-  version: 1.1.19
-  resolution: "which-typed-array@npm:1.1.19"
+  version: 1.1.20
+  resolution: "which-typed-array@npm:1.1.20"
   dependencies:
     available-typed-arrays: ^1.0.7
     call-bind: ^1.0.8
@@ -4876,7 +4876,7 @@ __metadata:
     get-proto: ^1.0.1
     gopd: ^1.2.0
     has-tostringtag: ^1.0.2
-  checksum: 162d2a07f68ea323f88ed9419861487ce5d02cb876f2cf9dd1e428d04a63133f93a54f89308f337b27cabd312ee3d027cae4a79002b2f0a85b79b9ef4c190670
+  checksum: 82527027127c3a6f7b278b5c0059605b968bec780d1ddd7c0ce3c2172ae4b9d2217486123107e31d229ff57ed8cc2bc76d751f290f392ee6d3aa27b26d2ffc12
   languageName: node
   linkType: hard
 

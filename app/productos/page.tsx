@@ -1,14 +1,15 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
-import { useProducts } from "@/hooks/useProducts";
-import { useState, useEffect, Suspense } from "react";
-import Navbar from "@/components/organisms/Navbar";
-import Footer from "@/components/organisms/Footer";
+import CategoryTab from "@/components/molecules/CategoryTab";
 import ProductCard from "@/components/molecules/ProductCard";
-import { cn } from "@/lib/utils/cn";
-import { motion, AnimatePresence } from "framer-motion";
+import Footer from "@/components/organisms/Footer";
+import Navbar from "@/components/organisms/Navbar";
+import { useProducts } from "@/hooks/useProducts";
+import { COLORS } from "@/lib/constants";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
 function CatalogContent() {
     const router = useRouter();
@@ -47,34 +48,32 @@ function CatalogContent() {
                 {/* Back Button */}
                 <button
                     onClick={() => router.back()}
-                    className="flex items-center text-gray-500 hover:text-[#2f3c3b] mb-12 transition-colors group"
+                    className="flex items-center hover:opacity-70 mb-12 transition-colors group"
+                    style={{ color: COLORS.primary }}
                 >
-                    <ChevronLeft className="w-5 h-5 mr-1 group-hover:-translate-x-1 transition-transform" />
+                    <ChevronLeft
+                        style={{ color: COLORS.primary }}
+                        className="w-5 h-5 mr-1 group-hover:-translate-x-1 transition-transform" />
                     Volver
                 </button>
 
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">Catálogo Completo</h1>
                     <p className="text-gray-600 max-w-2xl mx-auto">
-                        Explorá toda nuestra colección de prendas diseñadas.
+                        Explorá nuestra amplia gama de equipos, accesorios y servicios.
                     </p>
                 </div>
 
                 {/* Dynamic Filters */}
                 <div className="flex flex-wrap justify-center gap-4 mb-16">
                     {dynamicCategories.map((category) => (
-                        <button
+                        <CategoryTab
                             key={category.id}
+                            id={category.id}
+                            label={category.label}
+                            isActive={activeCategory === category.id}
                             onClick={() => setActiveCategory(category.id)}
-                            className={cn(
-                                "px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 border",
-                                activeCategory === category.id
-                                    ? "bg-[#2f3c3b] text-white border-[#2f3c3b]"
-                                    : "bg-transparent text-gray-500 border-gray-200 hover:border-[#2f3c3b] hover:text-[#2f3c3b]"
-                            )}
-                        >
-                            {category.label}
-                        </button>
+                        />
                     ))}
                 </div>
 

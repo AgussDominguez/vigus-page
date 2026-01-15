@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Logo from "@/components/atoms/Logo";
+import { COLORS } from "@/lib/constants";
 
 const PageLoader: React.FC = () => {
     return (
@@ -20,7 +21,7 @@ const PageLoader: React.FC = () => {
                         ease: "easeInOut"
                     }}
                 >
-                    <Logo size="lg" className="!text-[#2f3c3b]" />
+                    <Logo size="lg" className="color-current" style={{ color: COLORS.primary }} />
                 </motion.div>
                 <motion.div
                     className="mt-8 h-1 w-48 bg-gray-100 rounded-full overflow-hidden"
@@ -29,7 +30,8 @@ const PageLoader: React.FC = () => {
                     transition={{ delay: 0.5 }}
                 >
                     <motion.div
-                        className="h-full bg-[#2f3c3b]"
+                        className="h-full"
+                        style={{ backgroundColor: COLORS.primary }}
                         animate={{
                             x: [-200, 200]
                         }}

@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { SEO, BRAND, SITE_URL } from "@/lib/constants";
+import {
+  SEO,
+  BRAND,
+  SITE_URL,
+  CONTACT,
+  SOCIAL_LINKS
+} from "@/lib/constants";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -29,6 +35,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
+  icons: {
+    icon: BRAND.logo,
+    apple: BRAND.logo,
+  },
 };
 
 export default function RootLayout({
@@ -38,21 +48,18 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ClothingStore",
+    "@type": "MobilePhoneStore",
     "name": SEO.openGraph.siteName,
     "description": SEO.description,
     "url": SITE_URL,
-    "telephone": "+54 11 2345-6789",
+    "telephone": CONTACT.phones[0],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Mendoza",
       "addressCountry": "AR"
     },
-    "openingHours": "Mo-Fr 09:00-18:00",
-    "sameAs": [
-      "https://instagram.com/sema",
-      "https://facebook.com/sema"
-    ]
+    "openingHours": "Mo-Sa 09:00-20:00",
+    "sameAs": SOCIAL_LINKS.map(link => link.url)
   };
 
   return (

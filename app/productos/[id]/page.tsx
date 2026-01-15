@@ -4,11 +4,12 @@ import PageLoader from "@/components/atoms/PageLoader";
 import Footer from "@/components/organisms/Footer";
 import Navbar from "@/components/organisms/Navbar";
 import { useProducts } from "@/hooks/useProducts";
-import { CONTACT } from "@/lib/constants";
+import { BRAND, COLORS, CONTACT } from "@/lib/constants";
 import { motion } from "framer-motion";
 import { ChevronLeft, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function ProductDetailPage() {
     const { id } = useParams();
@@ -16,6 +17,13 @@ export default function ProductDetailPage() {
     const { products, isLoading } = useProducts();
 
     const product = products.find(p => p.id === id);
+    const [mainImgSrc, setMainImgSrc] = useState<string>("");
+
+    useEffect(() => {
+        if (product) {
+            setMainImgSrc(product.images?.primary || BRAND.placeholderImage);
+        }
+    }, [product]);
 
     if (isLoading) return <PageLoader />;
     if (!product) return <div className="min-h-screen flex items-center justify-center">Producto no encontrado</div>;
@@ -44,9 +52,13 @@ export default function ProductDetailPage() {
                 {/* Back Button */}
                 <button
                     onClick={() => router.back()}
-                    className="flex items-center text-gray-500 hover:text-[#2f3c3b] mb-12 transition-colors group"
+                    className="flex items-center hover:opacity-70 mb-12 transition-colors group"
+                    style={{ color: COLORS.primary }}
                 >
-                    <ChevronLeft className="w-5 h-5 mr-1 group-hover:-translate-x-1 transition-transform" />
+                    <ChevronLeft
+                        className="w-5 h-5 mr-1 group-hover:-translate-x-1 transition-transform"
+                        style={{ color: COLORS.primary }}
+                    />
                     Volver
                 </button>
 
@@ -58,11 +70,12 @@ export default function ProductDetailPage() {
                         className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gray-50 shadow-sm"
                     >
                         <Image
-                            src={product.images.primary}
+                            src={mainImgSrc || BRAND.placeholderImage}
                             alt={product.name}
                             fill
                             className="object-cover"
                             priority
+                            onError={() => setMainImgSrc(BRAND.placeholderImage)}
                         />
                     </motion.div>
 
@@ -72,7 +85,10 @@ export default function ProductDetailPage() {
                         animate={{ opacity: 1, x: 0 }}
                         className="flex flex-col justify-center"
                     >
-                        <span className="text-sm font-bold uppercase tracking-widest text-[#2f3c3b]/60 mb-4">
+                        <span
+                            className="text-sm font-bold uppercase tracking-widest mb-4 block"
+                            style={{ color: COLORS.primary, opacity: 0.6 }}
+                        >
                             {product.category}
                         </span>
                         <h1 className="text-4xl lg:text-5xl font-bold text-black mb-6">
@@ -80,7 +96,10 @@ export default function ProductDetailPage() {
                         </h1>
 
                         {formattedPrice && (
-                            <p className="text-3xl font-bold text-[#2f3c3b] mb-8">
+                            <p
+                                className="text-3xl font-bold mb-8"
+                                style={{ color: COLORS.primary }}
+                            >
                                 {formattedPrice}
                             </p>
                         )}
@@ -94,7 +113,11 @@ export default function ProductDetailPage() {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={handleBuy}
-                                className="w-full md:w-auto px-12 py-5 text-lg font-bold bg-[#25D366] text-white rounded-full flex items-center justify-center gap-3 transition-shadow hover:shadow-xl"
+                                className="w-full md:w-auto px-12 py-5 text-lg font-bold rounded-full flex items-center justify-center gap-3 transition-shadow hover:shadow-xl"
+                                style={{
+                                    backgroundColor: COLORS.primary,
+                                    color: COLORS.textOnPrimary
+                                }}
                             >
                                 <ShoppingBag className="w-6 h-6" />
                                 Comprar Ahora

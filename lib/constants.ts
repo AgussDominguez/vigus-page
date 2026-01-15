@@ -1,22 +1,33 @@
 /**
- * Constants and configuration for the clothing brand landing page
+ * Constants and configuration for the Dani Celulares landing page
  */
 
 // Brand Information
 export const BRAND = {
-    name: "SEMA",
-    tagline: "Creá tus prendas con quienes cuidan cada detalle",
-    subtitle: "Un proceso cuidado de principio a fin",
+    name: "Dani Celulares",
+    tagline: "Tu celular en las mejores manos",
+    subtitle: "Venta y reparación de celulares y accesorios",
     description:
-        "Somos una marca de indumentaria de Mendoza, Argentina, que fusiona tendencias contemporáneas con la calidad artesanal. Cada prenda es diseñada pensando en vos, en tu estilo único y en tu comodidad.",
+        "Somos una tienda de celulares ubicada en Rodeo del Medio, Mendoza. Ofrecemos venta de equipos, accesorios y servicio técnico especializado, con atención personalizada y confianza.",
     fullDescription:
-        "Fundada en Mendoza, SEMA nació de la pasión por crear prendas que no solo visten, sino que expresan personalidad. Trabajamos con materiales de primera calidad, diseños exclusivos y una producción consciente que respeta tanto a las personas como al medio ambiente. Nuestro compromiso es ofrecerte moda que trasciende temporadas, piezas versátiles que se adaptan a tu vida y estilo.",
+        "Dani Celulares es un emprendimiento local de Rodeo del Medio, Mendoza, dedicado a la venta de celulares, accesorios y reparaciones. Trabajamos con equipos de calidad, repuestos confiables y un servicio técnico responsable. Nuestro objetivo es que tengas tu celular funcionando como nuevo, con precios justos y atención directa.",
+    heroImage: "https://i.ibb.co/ZzKwkS3M/Captura-de-pantalla-2026-01-15-a-la-s-3-09-33-p-m.png",
+    logo: "https://i.ibb.co/2Yk5VmfR/Captura-de-pantalla-2026-01-15-a-la-s-3-10-59-p-m-removebg-preview.png",
+    placeholderImage: "/placeholder-brand.png",
+} as const;
+
+// Theme Colors
+export const COLORS = {
+    primary: "#b24e00",
+    secondary: "#ff8c61",
+    textOnPrimary: "#fff7f0",
+    background: "#8f3d00",
 } as const;
 
 // Navigation Links
 export const NAV_LINKS = [
     { href: "/#productos", label: "Productos" },
-    { href: "/#nosotros", label: "Nosotros" },
+    { href: "/#servicios", label: "Servicios" },
     { href: "/#contacto", label: "Contacto" },
 ] as const;
 
@@ -24,153 +35,73 @@ export const NAV_LINKS = [
 export interface Product {
     id: string;
     name: string;
-    price: number;
+    price?: number; // opcional, muchos locales no publican precio
     description: string;
-    category: "remeras" | "buzos" | "pantalones" | "gorras";
+    category: "celulares" | "accesorios" | "reparaciones";
     images: {
         primary: string;
-        hover: string;
+        hover?: string;
     };
 }
 
-export const PRODUCTS: Product[] = [
-    {
-        id: "1",
-        name: "Oversized Tee Essential",
-        price: 12500,
-        description: "Remera oversized de algodón premium con fit relajado",
-        category: "remeras",
-        images: {
-            primary: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop",
-            hover: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&h=1000&fit=crop",
-        },
-    },
-    {
-        id: "2",
-        name: "Denim Jacket Vintage",
-        price: 28900,
-        description: "Campera de jean con detalles vintage y corte moderno",
-        category: "buzos", // Categorizing as buzos/camperas for this example
-        images: {
-            primary: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&h=1000&fit=crop",
-            hover: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&h=1000&fit=crop",
-        },
-    },
-    {
-        id: "3",
-        name: "Cargo Pants Urban",
-        price: 19800,
-        description: "Pantalón cargo de gabardina con múltiples bolsillos",
-        category: "pantalones",
-        images: {
-            primary: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&h=1000&fit=crop",
-            hover: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&h=1000&fit=crop",
-        },
-    },
-    {
-        id: "4",
-        name: "Hoodie Premium Black",
-        price: 22500,
-        description: "Buzo con capucha de algodón frizado premium",
-        category: "buzos",
-        images: {
-            primary: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&h=1000&fit=crop",
-            hover: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800&h=1000&fit=crop",
-        },
-    },
-    {
-        id: "5",
-        name: "Minimal White Shirt",
-        price: 15900,
-        description: "Camisa minimalista de lino ideal para cualquier ocasión",
-        category: "remeras",
-        images: {
-            primary: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&h=1000&fit=crop",
-            hover: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&h=1000&fit=crop",
-        },
-    },
-    {
-        id: "6",
-        name: "Bomber Jacket Street",
-        price: 32900,
-        description: "Campera bomber con diseño urbano y detalles exclusivos",
-        category: "buzos",
-        images: {
-            primary: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&h=1000&fit=crop",
-            hover: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&h=1000&fit=crop",
-        },
-    },
-    {
-        id: "7",
-        name: "Cap Street SEMA",
-        price: 8500,
-        description: "Gorra trucker con bordado frontal de alta calidad",
-        category: "gorras",
-        images: {
-            primary: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&h=1000&fit=crop",
-            hover: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=800&h=1000&fit=crop",
-        },
-    },
-] as const;
-
 // Contact Information
 export const CONTACT = {
-    phones: ["+54 11 2345-6789", "+54 11 8765-4321"],
-    email: "hola@sema.com.ar",
+    phones: ["+54 9 2613 60-7266"],
+    email: "danicelulares@gmail.com",
     whatsapp: {
-        number: "5491123456789",
-        defaultMessage: "Hola SEMA Indumentaria! Me gustaría realizar una consulta.",
-        productTemplate: "Hola SEMA Indumentaria! Te contacto por la compra de {product}{price}.",
+        number: "5492613607266",
+        defaultMessage: "Hola Dani Celulares! Quería hacer una consulta.",
+        productTemplate:
+            "Hola Dani Celulares! Te escribo por el producto {product}{price}.",
     },
-    address: "Mendoza, Argentina",
+    address: "Rodeo del Medio, Mendoza, Argentina",
 } as const;
 
 // Social Media Links
 export const SOCIAL_LINKS = [
     {
         name: "Instagram",
-        url: "https://instagram.com/sema",
+        url: "https://www.instagram.com/danii_celulares_rdm/?hl=es-la",
         icon: "instagram",
     },
     {
         name: "Facebook",
-        url: "https://facebook.com/sema",
+        url: "https://www.facebook.com/clinica.del.celular.468136/",
         icon: "facebook",
     },
     {
         name: "TikTok",
-        url: "https://tiktok.com/@sema",
+        url: "https://www.tiktok.com/@danii_celulares_rdm",
         icon: "video",
     },
+
 ] as const;
 
 // SEO Metadata
-export const SITE_URL = "https://sema-page.vercel.app"; // Update with actual domain if different
+export const SITE_URL = "https://dani-celulares.vercel.app"; // cambiar si usás dominio propio
 
 export const SEO = {
-    title: "SEMA Indumentaria | Ropa de Hombre y Mujer en Mendoza",
+    title: "Dani Celulares | Venta y Reparación de Celulares en Rodeo del Medio",
     description:
-        "SEMA Indumentaria: Descubrí las mejores remeras, buzos y pantalones en Mendoza. Moda urbana con calidad artesanal y envíos a toda Argentina.",
+        "Dani Celulares en Rodeo del Medio, Mendoza. Venta de celulares, accesorios y servicio técnico. Atención personalizada y contacto directo por WhatsApp.",
     keywords: [
-        "SEMA Indumentaria",
-        "ropa mendoza",
-        "indumentaria mendoza",
-        "remeras mendoza",
-        "buzos mendoza",
-        "streetwear argentina",
-        "moda urbana mendoza",
-        "SEMA ropa",
+        "Dani Celulares",
+        "celulares Rodeo del Medio",
+        "reparación de celulares Mendoza",
+        "venta de celulares Mendoza",
+        "servicio técnico celulares",
+        "accesorios celulares Mendoza",
     ],
     openGraph: {
         type: "website" as const,
         locale: "es_AR",
-        siteName: "SEMA Indumentaria",
+        siteName: "Dani Celulares",
         images: [
             {
                 url: `${SITE_URL}/og-image.jpg`,
                 width: 1200,
                 height: 630,
-                alt: "SEMA Indumentaria Mendoza",
+                alt: "Dani Celulares - Rodeo del Medio",
             },
         ],
     },
