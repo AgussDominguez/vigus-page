@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import { useProducts } from "@/hooks/useProducts";
 
 const ProductsSection: React.FC = () => {
-    const { products } = useProducts();
+    const { products, isLoading } = useProducts();
     const [activeCategory, setActiveCategory] = useState<string>("");
 
     useEffect(() => {
@@ -51,25 +51,33 @@ const ProductsSection: React.FC = () => {
                 </div>
 
                 <div className="relative">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={activeCategory}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 overflow-x-auto md:overflow-x-visible pb-8 snap-x snap-mandatory scrollbar-hide"
-                        >
-                            {filteredProducts.slice(0, 4).map((product) => (
-                                <div
-                                    key={product.id}
-                                    className="min-w-[85vw] md:min-w-0 snap-center"
-                                >
-                                    <ProductCard product={product} />
-                                </div>
+                    {isLoading ? (
+                        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 overflow-hidden">
+                            {[1, 2, 3, 4].map((i) => (
+                                <div key={i} className="min-w-[85vw] md:min-w-0 aspect-[4/5] bg-gray-100 animate-pulse rounded-lg" />
                             ))}
-                        </motion.div>
-                    </AnimatePresence>
+                        </div>
+                    ) : (
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={activeCategory}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 overflow-x-auto md:overflow-x-visible pb-8 snap-x snap-mandatory scrollbar-hide"
+                            >
+                                {filteredProducts.slice(0, 4).map((product) => (
+                                    <div
+                                        key={product.id}
+                                        className="min-w-[85vw] md:min-w-0 snap-center"
+                                    >
+                                        <ProductCard product={product} />
+                                    </div>
+                                ))}
+                            </motion.div>
+                        </AnimatePresence>
+                    )}
                 </div>
 
                 {filteredProducts.length > 4 && (
