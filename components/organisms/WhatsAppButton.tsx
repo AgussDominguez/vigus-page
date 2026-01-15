@@ -20,7 +20,7 @@ const WhatsAppButton: React.FC = () => {
     }, []);
 
     const handleClick = () => {
-        const encodedMessage = encodeURIComponent(CONTACT.whatsapp.message);
+        const encodedMessage = encodeURIComponent(CONTACT.whatsapp.defaultMessage);
         const whatsappUrl = `https://wa.me/${CONTACT.whatsapp.number}?text=${encodedMessage}`;
         window.open(whatsappUrl, "_blank");
     };

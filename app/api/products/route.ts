@@ -27,7 +27,16 @@ export async function GET() {
                 id: (index + 2).toString(), // Using row number as ID
                 name: row[0] || 'Producto sin nombre',
                 description: row[1] || '', // Description is the 2nd column
-                price: row[2] ? Number(row[2].toString().replace(/[$.]/g, '')) : null, // Price is the 3rd column
+                price: row[2]
+                    ? (() => {
+                        const clean = row[2].toString()
+                            .replace(/[$\s]/g, '') // remove $ and spaces
+                            .replace(/\./g, '')    // remove thousands separator
+                            .replace(/,/g, '.');   // replace decimal separator
+                        const num = Number(clean);
+                        return isNaN(num) ? null : num;
+                    })()
+                    : null,
                 category: category,
                 images: {
                     primary: row[3] || '', // Image is the 4th column

@@ -119,7 +119,8 @@ export const CONTACT = {
     email: "hola@sema.com.ar",
     whatsapp: {
         number: "5491123456789",
-        message: "Hola SEMA Indumentaria! Te contacto por la compra de {product} de {price}$.",
+        defaultMessage: "Hola SEMA Indumentaria! Me gustaría realizar una consulta.",
+        productTemplate: "Hola SEMA Indumentaria! Te contacto por la compra de {product}{price}.",
     },
     address: "Mendoza, Argentina",
 } as const;

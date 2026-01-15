@@ -25,9 +25,13 @@ export default function ProductDetailPage() {
         : null;
 
     const handleBuy = () => {
-        const message = CONTACT.whatsapp.message
+        const priceFragment = product.price > 0
+            ? ` de ${new Intl.NumberFormat('es-AR').format(product.price)}$`
+            : "";
+
+        const message = CONTACT.whatsapp.productTemplate
             .replace("{product}", product.name)
-            .replace("{price}", product.price ? new Intl.NumberFormat('es-AR').format(product.price) : "a convenir");
+            .replace("{price}", priceFragment);
 
         const whatsappUrl = `https://wa.me/${CONTACT.whatsapp.number}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, "_blank");
