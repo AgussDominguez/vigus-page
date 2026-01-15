@@ -1,19 +1,13 @@
-import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
-import Script from "next/script";
-import "./globals.css";
-import {
-  SEO,
-  BRAND,
-  SITE_URL,
-  CONTACT,
-  SOCIAL_LINKS
-} from "@/lib/constants";
+import type { Metadata } from 'next';
+import { Raleway } from 'next/font/google';
+import Script from 'next/script';
+import './globals.css';
+import { SEO, BRAND, SITE_URL, CONTACT, SOCIAL_LINKS } from '@/lib/constants';
 
 const raleway = Raleway({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-raleway",
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-raleway',
 });
 
 export const metadata: Metadata = {
@@ -28,7 +22,7 @@ export const metadata: Metadata = {
     siteName: SEO.openGraph.siteName,
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: SEO.title,
     description: SEO.description,
   },
@@ -47,19 +41,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "MobilePhoneStore",
-    "name": SEO.openGraph.siteName,
-    "description": SEO.description,
-    "url": SITE_URL,
-    "telephone": CONTACT.phones[0],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Mendoza",
-      "addressCountry": "AR"
+    '@context': 'https://schema.org',
+    '@type': 'MobilePhoneStore',
+    name: SEO.openGraph.siteName,
+    description: SEO.description,
+    url: SITE_URL,
+    telephone: CONTACT.phones[0],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Mendoza',
+      addressCountry: 'AR',
     },
-    "openingHours": "Mo-Sa 09:00-20:00",
-    "sameAs": SOCIAL_LINKS.map(link => link.url)
+    openingHours: 'Mo-Sa 09:00-20:00',
+    sameAs: SOCIAL_LINKS.map((link) => link.url),
   };
 
   return (
@@ -71,10 +65,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body
-        className={`${raleway.variable} font-sans antialiased`}
-        suppressHydrationWarning
-      >
+      <body className={`${raleway.variable} font-sans antialiased`} suppressHydrationWarning>
         {children}
       </body>
     </html>
