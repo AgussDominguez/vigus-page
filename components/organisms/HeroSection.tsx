@@ -1,18 +1,18 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Heading, Text } from "@/components/atoms/Typography";
 import Button from "@/components/atoms/Button";
+import { Text } from "@/components/atoms/Typography";
 import { BRAND } from "@/lib/constants";
 import { handleNavClick } from "@/lib/utils/smooth-scroll";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import React from "react";
 
 const HeroSection: React.FC = () => {
     return (
         <section
             id="hero"
-            className="relative min-h-screen flex items-center justify-center overflow-hidden"
+            className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden"
         >
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
@@ -55,22 +55,6 @@ const HeroSection: React.FC = () => {
                     </motion.div>
                 </motion.div>
             </div>
-
-            {/* Scroll Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 1 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2"
-            >
-                <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2"
-                >
-                    <motion.div className="w-1 h-2 bg-white/50 rounded-full" />
-                </motion.div>
-            </motion.div>
         </section>
     );
 };

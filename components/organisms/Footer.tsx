@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
                             © {currentYear} {BRAND.name}. Todos los derechos reservados.
                         </Text>
                         <Text variant="small" className="text-gray-400">
-                            Buenos Aires, Argentina
+                            Mendoza, Argentina
                         </Text>
                     </div>
                 </div>

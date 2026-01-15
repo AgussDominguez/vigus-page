@@ -24,7 +24,13 @@ export function handleNavClick(
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
 ) {
-    e.preventDefault();
-    const sectionId = href.replace("#", "");
-    smoothScrollToSection(sectionId);
+    const isHomePage = window.location.pathname === "/";
+    const isAnchor = href.includes("#");
+
+    if (isHomePage && isAnchor) {
+        e.preventDefault();
+        const sectionId = href.split("#")[1];
+        smoothScrollToSection(sectionId);
+    }
+    // If not on home page, allow normal link behavior (navigating to home with anchor)
 }

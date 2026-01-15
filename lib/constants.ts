@@ -6,7 +6,7 @@
 export const BRAND = {
     name: "SEMA",
     tagline: "Creá tus prendas con quienes cuidan cada detalle",
-    subtitle: "Diseño y Calidad desde Mendoza",
+    subtitle: "Un proceso cuidado de principio a fin",
     description:
         "Somos una marca de indumentaria de Mendoza, Argentina, que fusiona tendencias contemporáneas con la calidad artesanal. Cada prenda es diseñada pensando en vos, en tu estilo único y en tu comodidad.",
     fullDescription:
@@ -15,9 +15,9 @@ export const BRAND = {
 
 // Navigation Links
 export const NAV_LINKS = [
-    { href: "#productos", label: "Productos" },
-    { href: "#nosotros", label: "Nosotros" },
-    { href: "#contacto", label: "Contacto" },
+    { href: "/#productos", label: "Productos" },
+    { href: "/#nosotros", label: "Nosotros" },
+    { href: "/#contacto", label: "Contacto" },
 ] as const;
 
 // Products Data
@@ -119,7 +119,7 @@ export const CONTACT = {
     email: "hola@sema.com.ar",
     whatsapp: {
         number: "5491123456789",
-        message: "Hola! Me gustaría obtener más información sobre sus prendas.",
+        message: "Hola SEMA Indumentaria! Te contacto por la compra de {product} de {price}$.",
     },
     address: "Mendoza, Argentina",
 } as const;

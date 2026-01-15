@@ -14,8 +14,8 @@ const Logo: React.FC<LogoProps> = ({ size = "md", className }) => {
     };
 
     return (
-        <div className={cn("font-bold tracking-tighter", sizes[size], className)}>
-            <span className="text-white">SEMA</span>
+        <div className={cn("font-bold tracking-tighter text-white", sizes[size], className)}>
+            <span>SEMA</span>
         </div>
     );
 };

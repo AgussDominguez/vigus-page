@@ -1,24 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import ProductCard from "@/components/molecules/ProductCard";
-import { PRODUCTS } from "@/lib/constants";
 import { cn } from "@/lib/utils/cn";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
 
-const CATEGORIES = [
-    { id: "remeras", label: "Remeras" },
-    { id: "buzos", label: "Buzos" },
-    { id: "pantalones", label: "Pantalones" },
-    { id: "gorras", label: "Gorras" },
-] as const;
-
-type CategoryId = (typeof CATEGORIES)[number]["id"];
+import { useProducts } from "@/hooks/useProducts";
 
 const ProductsSection: React.FC = () => {
-    const [activeCategory, setActiveCategory] = useState<CategoryId>("remeras");
+    const { products } = useProducts();
+    const [activeCategory, setActiveCategory] = useState<string>("");
 
-    const filteredProducts = PRODUCTS.filter(
+    useEffect(() => {
+        if (products.length > 0 && !activeCategory) {
+            setActiveCategory(products[0].category);
+        }
+    }, [products, activeCategory]);
+
+    // Derive unique categories from products
+    const dynamicCategories = Array.from(new Set(products.map(p => p.category)))
+        .filter(Boolean)
+        .map(cat => ({
+            id: cat,
+            label: cat.charAt(0).toUpperCase() + cat.slice(1)
+        }));
+
+    const filteredProducts = products.filter(
         (product) => product.category === activeCategory
     );
 
@@ -27,7 +34,7 @@ const ProductsSection: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Tabs */}
                 <div className="flex flex-wrap justify-center gap-4 mb-16">
-                    {CATEGORIES.map((category) => (
+                    {dynamicCategories.map((category) => (
                         <button
                             key={category.id}
                             onClick={() => setActiveCategory(category.id)}
@@ -43,25 +50,40 @@ const ProductsSection: React.FC = () => {
                     ))}
                 </div>
 
-                <motion.div
-                    layout
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10"
-                >
-                    <AnimatePresence mode="popLayout">
-                        {filteredProducts.map((product) => (
-                            <motion.div
-                                key={product.id}
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.4 }}
-                            >
-                                <ProductCard product={product} />
-                            </motion.div>
-                        ))}
+                <div className="relative">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeCategory}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 overflow-x-auto md:overflow-x-visible pb-8 snap-x snap-mandatory scrollbar-hide"
+                        >
+                            {filteredProducts.slice(0, 4).map((product) => (
+                                <div
+                                    key={product.id}
+                                    className="min-w-[85vw] md:min-w-0 snap-center"
+                                >
+                                    <ProductCard product={product} />
+                                </div>
+                            ))}
+                        </motion.div>
                     </AnimatePresence>
-                </motion.div>
+                </div>
+
+                {filteredProducts.length > 4 && (
+                    <div className="mt-16 flex justify-center">
+                        <motion.a
+                            href={`/productos?category=${activeCategory}`}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="px-10 py-4 border-2 border-[#2f3c3b] text-[#2f3c3b] rounded-full font-semibold hover:bg-[#2f3c3b] hover:text-white transition-all duration-300"
+                        >
+                            Ver más {activeCategory}
+                        </motion.a>
+                    </div>
+                )}
             </div>
         </section>
     );

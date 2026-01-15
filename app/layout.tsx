@@ -64,7 +64,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${raleway.variable} font-sans antialiased`}>
+      <body
+        className={`${raleway.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
