@@ -7,44 +7,40 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint-tsc": "yarn tsc --noEmit",
     "lint:fix": "next lint --fix",
+    "lint-tsc": "tsc --noEmit",
     "format": "prettier --write .",
     "prepare": "husky install",
     "commit": "gitmoji -c"
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "eslint": "^9.34.0",
-    "eslint-config-next": "15.5.2",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
     "framer-motion": "^12.26.2",
     "googleapis": "^170.0.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.1.5",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "snyk": "^1.1298.3",
-    "tailwind-merge": "^3.4.0",
-    "typescript": "^5"
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "*.{ts,tsx,js,jsx}": [
       "prettier --write",
-      "eslint --max-warnings 0 ."
+      "eslint --max-warnings 0"
     ]
   }
 }
